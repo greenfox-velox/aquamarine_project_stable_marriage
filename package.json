@@ -2,7 +2,7 @@
   "name": "stablemarriage",
   "version": "1.0.0",
   "description": "aquamarine stable marriage project",
-  "main": "",
+  "main": "server.js",
   "scripts": {
     "test": "",
     "start": ""
