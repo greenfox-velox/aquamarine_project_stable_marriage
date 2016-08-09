@@ -23,8 +23,13 @@ function createApp(connection) {
     db.testDb(req, connection, function(err, response) {
       if (err) {
         res.status(500).json(err);
+        console.log(err);
       } else {
-        res.send(response);
+        if (response.length > 0) {
+          res.status(200).send(response);
+        } else {
+          res.status(500).json(err);
+        }
       }
     });
   });
