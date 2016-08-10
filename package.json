@@ -2,10 +2,10 @@
   "name": "stablemarriage",
   "version": "1.0.0",
   "description": "aquamarine stable marriage project",
-  "main": "server.js",
+  "main": "serverinit.js",
   "scripts": {
     "test": "",
-    "start": ""
+    "start": "node serverinit.js"
   },
   "repository": {
     "type": "git",
