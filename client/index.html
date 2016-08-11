@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html ng-app="StableMarriage">
+  <head>
+    <title>Stable Marriage</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.3.1/angular-ui-router.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link rel="stylesheet" href="./assets/style.css" type="text/css">
+
+    <script src="./app/app.js"></script>
+  </head>
+  <body ng-controller="AppController">
+    <header ng-include="'header.html'"></header>
+    <div class="text-xs-center container-fluid">
+      <img src="bg-1.png" class="img-rounded" alt="Responsive image" />
+    </div>
+    <ui-view></ui-view>
+    <div ui-view></div>
+
+
+  </body>
+</html>
