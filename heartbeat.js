@@ -34,6 +34,11 @@ function createApp(connection) {
       }
     });
   });
+
+  app.post('/api/log', function(req, res) {
+    log.logger(req);
+  });
+
   return app;
 }
 
