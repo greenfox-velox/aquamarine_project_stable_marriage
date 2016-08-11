@@ -1,7 +1,7 @@
 'use strict';
 
 var db = require('./db.js');
-
+var log = require('./backendlogs.js');
 var express = require('express');
 
 function createApp(connection) {
@@ -21,12 +21,14 @@ function createApp(connection) {
   app.get('/heartbeat', function(req, res) {
     db.testDb(req, connection, function(err, response) {
       if (err) {
+        log.logError('Error connecting to database')
         res.status(500).json(err);
-        console.log(err);
       } else {
         if (response.length > 0) {
+          log.logInfo('Connection established with database')
           res.status(200).send(response);
         } else {
+          log.logError('Error connecting to database')
           res.status(500).json(err);
         }
       }
