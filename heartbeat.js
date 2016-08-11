@@ -9,7 +9,7 @@ function createApp(connection) {
   var bodyParser = require('body-parser');
 
   app.use(bodyParser.json());
-  app.use(express.static('./client'));
+  app.use(express.static('../client'));
 
   app.use(function(req, res, next) {
     res.header('Access-Control-Allow-Origin', '*');
@@ -33,6 +33,9 @@ function createApp(connection) {
         }
       }
     });
+  });
+  app.post('/api/log', function(req) {
+    log.logInfo(req);
   });
   return app;
 }
