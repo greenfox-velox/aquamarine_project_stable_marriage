@@ -4,6 +4,6 @@ var log = require('./backendlogs.js');
 
 var app = api.createApp(mysqlconnection);
 
-app.listen(process.env.PORT || 3000, function () {
+app.listen(process.env.PORT || 3000, function() {
   log.logInfo('Listening on port 3000');
 });
