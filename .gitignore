@@ -1,6 +1,5 @@
 node_modules
 .git
-config.js
 .eslintrc.js
 style.css
 npm-debug.log
