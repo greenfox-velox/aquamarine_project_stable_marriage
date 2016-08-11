@@ -28,15 +28,21 @@ StableMarriage.factory('StableMarriageService', function(Config, $http) {
   };
 });
 
-StableMarriage.controller('AppController', function($scope, $http, $state, StableMarriageService, Config) {
+StableMarriage.controller('AppController', function($scope, $http, $state, $location, StableMarriageService) {
 
   $scope.changeRouteSuccess = function() {
-    console.log('route successfully changed to: ' + $location.path());
+    console.log('route successfully changed to: ', $location.path());
   };
 
-  $scope.changeRouteErr = function() {
-    console.log('error happened while changing route to: ' + $location.path());
+  $scope.changeRouteError = function() {
+    console.log('error happened while changing route to: ', $location.path());
   };
 
-  StableMarriageService.landing().then($scope.changeRouteSuccess, $scope.changeRouteErr);
+  $scope.$on('$stateChangeSuccess', function logRouteChange() {
+    var currentUrl = $location.newUrl;
+    var newMessage = 'route changed to: ' + currentUrl;
+    StableMarriageService.postLog(newMessage).then($scope.changeRouteSuccess, $scope.changeRouteError);
+  });
+
+  StableMarriageService.landing().then($scope.changeRouteSuccess, $scope.changeRouteError);
 });

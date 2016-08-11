@@ -19,23 +19,19 @@ function createApp(connection) {
   });
 
   app.get('/heartbeat', function(req, res) {
-    db.testDb(req, connection, function(err, response) {
-      if (err) {
-        log.logError('Error connecting to database');
-        res.status(500).json(err);
+    db.testDb(req, connection, function(error, response) {
+      if (!error && response.length > 0) {
+        log.logInfo('Connection established with database');
+        res.status(200).send(response);
       } else {
-        if (response.length > 0) {
-          log.logInfo('Connection established with database');
-          res.status(200).send(response);
-        } else {
-          log.logError('Error connecting to database');
-          res.status(500).json(err);
-        }
+        log.logError('Error connecting to database');
+        res.status(500).json(error);
       }
     });
   });
 
   app.post('/api/log', function(req, res) {
+    console.log(req);
     log.logger(req);
   });
 
