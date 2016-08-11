@@ -1,7 +1,6 @@
 'use strict';
 
 var db = require('./db.js');
-var mysqlcon = require('./mysqlconnection.js')
 
 var express = require('express');
 
