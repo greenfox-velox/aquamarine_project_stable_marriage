@@ -1,6 +1,7 @@
 node_modules
 .git
-.eslintrc.js
+.env
+.eslintrc
 style.css
 npm-debug.log
 .env

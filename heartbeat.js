@@ -2,7 +2,6 @@
 
 var db = require('./db.js');
 var log = require('./backendlogs.js');
-
 var express = require('express');
 
 function createApp(connection) {
