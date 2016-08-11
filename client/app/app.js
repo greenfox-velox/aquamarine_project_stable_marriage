@@ -1,4 +1,13 @@
-var StableMarriage = angular.module('StableMarriage', []);
+var StableMarriage = angular
+  .module('StableMarriage', ['ui.router'])
+  .config(function($stateProvider){
+    $stateProvider
+      .state('mainPage', {
+        url: '/',
+        templateURL: '../index.html',
+        controller: 'AppController' ,
+      })
+  });
 
 StableMarriage.factory('Config', function() {
   return {
@@ -8,13 +17,13 @@ StableMarriage.factory('Config', function() {
 
 StableMarriage.factory('StableMarriage', function(Config, $http) {
   return {
-    getAll: function() {
+    landing: function() {
       return $http.get(Config.baseUrl);
     }
   };
 });
 
-StableMarriage.controller('AppController', function($scope, $http, StableMarriage){
+StableMarriage.controller('AppController', function($scope, $http, $state, StableMarriage){
 
 
   // StableMarriage.getAll().success(function(data) {
