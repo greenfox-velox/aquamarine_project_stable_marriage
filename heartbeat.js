@@ -21,14 +21,14 @@ function createApp(connection) {
   app.get('/heartbeat', function(req, res) {
     db.testDb(req, connection, function(err, response) {
       if (err) {
-        log.logError('Error connecting to database at ' + Date());
+        log.logError('Error connecting to database at ' + Date().split(' ').slice(0, 5).join(' '));
         res.status(500).json(err);
       } else {
         if (response.length > 0) {
-          log.logInfo('Connection established with database at ' + Date());
+          log.logInfo('Connection established with database at ' + Date().split(' ').slice(0, 5).join(' '));
           res.status(200).send(response);
         } else {
-          log.logError('Error connecting to database at' + Date());
+          log.logError('Error connecting to database at' + Date().split(' ').slice(0, 5).join(' '));
           res.status(500).json(err);
         }
       }
