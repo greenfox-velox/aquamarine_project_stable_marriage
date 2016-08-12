@@ -1,13 +1,20 @@
 var StableMarriage = angular
   .module('StableMarriage', ['ui.router'])
-  .config(function($stateProvider){
+  .config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $urlRouterProvider) {
+    $urlRouterProvider.otherwise('/');
+
     $stateProvider
       .state('mainPage', {
         url: '/',
-        templateURL: '../index.html',
-        controller: 'AppController' ,
+        templateURL: 'index.html',
+        controller: 'AppController'
       })
-  });
+      .state('about', {
+        url: '/about',
+        templateURL: '../about.html',
+        controller: 'AppController'
+      });
+  }]);
 
 StableMarriage.factory('Config', function() {
   return {
