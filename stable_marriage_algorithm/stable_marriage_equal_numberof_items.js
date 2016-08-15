@@ -73,7 +73,7 @@ function getCurrentCandidateIndex(companyName) {
 
 function incrementCurrentCandidateIndex(companyName) {
   for (var i = 0; i < nextCandidateIndex.length; ++i) {
-    if (nextCandidateIndex[i][0].name = companyName) {
+    if (nextCandidateIndex[i][0].name == companyName) {
       ++nextCandidateIndex[i][0].index;
       break;
     }
