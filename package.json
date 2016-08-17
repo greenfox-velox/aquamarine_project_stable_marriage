@@ -7,6 +7,9 @@
     "test": "",
     "start": "node serverinit.js"
   },
+  "engines": {
+    "node": "v4.4.6"
+  },
   "repository": {
     "type": "git",
     "url": "https://github.com/greenfox-velox/aquamarine_project_stable_marriage"
