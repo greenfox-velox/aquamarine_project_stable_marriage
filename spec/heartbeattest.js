@@ -13,6 +13,7 @@ tape('Get method response status is 200, content type is json', function(t) {
       if (err) {
         t.fail();
       } else {
+        t.equal(res.body.length, 3);
         t.end();
       }
     });
