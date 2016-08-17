@@ -31,8 +31,8 @@ function createApp(connection) {
   });
 
   app.post('/api/log', function(req, res) {
-    console.log(req);
-    log.logger(req);
+    console.log(req.body);
+    log.logger(req.body);
   });
 
   return app;

@@ -1,6 +1,6 @@
 var StableMarriage = angular
   .module('StableMarriage', ['ui.router'])
-  .config(function($stateProvider) {
+  .config(function($stateProvider, $urlRouterProvider) {
     $stateProvider
       .state('landing', {
         url: '/',
@@ -20,28 +20,56 @@ StableMarriage.factory('StableMarriageService', function(Config, $http) {
   return {
     landing: function() {
       return $http.get(Config.baseUrl);
-    },
-
-    postLog: function(message) {
-      return $http.post(Config.logUrl, message);
     }
   };
 });
 
-StableMarriage.controller('AppController', function($scope, $http, $state, $location, StableMarriageService) {
+StableMarriage.factory('logger', function(Config, $http) {
+  var currentLevel = getCurrentLevel(DEFAULT_LOG_LVL);
 
+  function getCurrentLevel(logLvl) {
+    return LOGLEVELS.indexOf(logLvl);
+  }
+
+  function createLog(level, object) {
+    var incomingLevel = getCurrentLevel(level);
+    var logEntry = {
+      date: Date(),
+      level: level,
+      data: object
+    };
+    if (currentLevel <= incomingLevel) {
+      $http.post(Config.logUrl, logEntry).then();
+      console.log(logEntry);
+    }
+  }
+  return {
+    debug: function(log) {
+      createLog('debug', log);
+    },
+    info: function(log) {
+      createLog('info', log);
+    },
+    warn: function(log) {
+      createLog('warn', log);
+    },
+    error: function(log) {
+      createLog('error', log);
+    }
+  };
+});
+
+StableMarriage.controller('AppController', function($scope, $http, $state, $location, StableMarriageService, logger) {
   $scope.changeRouteSuccess = function() {
-    console.log('route successfully changed to: ', $location.path());
+    logger.info('Route successfully changed to: ' + $location.patch());
   };
 
   $scope.changeRouteError = function() {
-    console.log('error happened while changing route to: ', $location.path());
+    logger.error('Error occurred while changing route');
   };
 
   $scope.$on('$stateChangeSuccess', function logRouteChange() {
-    var currentUrl = $location.newUrl;
-    var newMessage = 'route changed to: ' + currentUrl;
-    StableMarriageService.postLog(newMessage).then($scope.changeRouteSuccess, $scope.changeRouteError);
+    logger.debug('state change requested').then($scope.changeRouteSuccess, $scope.changeRouteError);
   });
 
   StableMarriageService.landing().then($scope.changeRouteSuccess, $scope.changeRouteError);

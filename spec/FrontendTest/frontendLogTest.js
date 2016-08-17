@@ -2,7 +2,8 @@
 
 describe('AppController', function() {
 
-  beforeEach(module('StableMarriage'));
+  beforeEach(angular.mock.module('StableMarriage'));
+
   describe('AppController', function() {
 
     var $httpBackend;
@@ -19,6 +20,7 @@ describe('AppController', function() {
       createController = function() {
         return $controller('AppController', {'$scope': $rootScope });
       };
+      createController();
     }));
 
     afterEach(function() {
@@ -26,9 +28,14 @@ describe('AppController', function() {
       $httpBackend.verifyNoOutstandingRequest();
     });
 
+    it('should properly connect to the landing page', function() {
+      $httpBackend.expectGET('http://localhost:3000/').respond(200, 'ok');
+      $httpBackend.flush();
+    });
+
     it('should respond with status 200', function() {
-      createController();
-      $httpBackend.expectPOST('/api/log').respond(200, 'ok');
+      $httpBackend.expectGET('http://localhost:3000/').respond(200, 'ok');
+      $httpBackend.expectPOST('http://localhost:3000/api/log').respond(200, 'ok');
       $httpBackend.flush();
     });
   });
