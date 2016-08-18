@@ -1,20 +1,21 @@
-var StableMarriage = angular
-  .module('StableMarriage', ['ui.router'])
-  .config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $urlRouterProvider) {
-    $urlRouterProvider.otherwise('/');
+var StableMarriage = angular.module('StableMarriage', ['ui.router']);
 
-    $stateProvider
-      .state('mainPage', {
-        url: '/',
-        templateURL: 'index.html',
-        controller: 'AppController'
-      })
-      .state('about', {
-        url: '/about',
-        templateURL: '../about.html',
-        controller: 'AppController'
-      });
-  }]);
+StableMarriage.config(function($stateProvider, $urlRouterProvider, $locationProvider) {
+  $urlRouterProvider.otherwise('/');
+
+  $stateProvider
+    .state('main', {
+      url: '/',
+      templateUrl: 'home.html',
+      controller: 'AppController'
+    })
+    .state('about', {
+      url: '/about',
+      templateUrl: 'about.html',
+      controller: 'AppController'
+    })
+  $locationProvider.html5Mode(true);
+});
 
 StableMarriage.factory('Config', function() {
   return {
@@ -22,7 +23,7 @@ StableMarriage.factory('Config', function() {
   };
 });
 
-StableMarriage.factory('StableMarriage', function(Config, $http) {
+StableMarriage.factory('StableMarriageService', function(Config, $http) {
   return {
     landing: function() {
       return $http.get(Config.baseUrl);
@@ -30,10 +31,8 @@ StableMarriage.factory('StableMarriage', function(Config, $http) {
   };
 });
 
-StableMarriage.controller('AppController', function($scope, $http, $state, StableMarriage){
-
-
-  // StableMarriage.getAll().success(function(data) {
+StableMarriage.controller('AppController', function($scope, $http) {
+  console.log('MAJOM');
+  // StableMarriageService.getAll().success(function(data) {
   // });
-
 });
