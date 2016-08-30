@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html ng-app="StableMarriage">
   <head>
+    <base href="/"></base>
     <title>Stable Marriage</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -13,13 +14,6 @@
   </head>
   <body ng-controller="AppController">
     <header ng-include="'header.html'"></header>
-    <div class="text-xs-center container-fluid">
-      <img src="bg-1.png" class="img-rounded" alt="Responsive image" />
-    </div>
-
-
-
-
-
+    <div ui-view></div>
   </body>
 </html>
