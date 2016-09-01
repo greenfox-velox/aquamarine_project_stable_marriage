@@ -18,7 +18,7 @@ StableMarriage.config(function($stateProvider, $urlRouterProvider, $locationProv
       url: '/matching',
       templateUrl: 'matching.html',
       controller: 'AppController'
-    })
+    });
   $locationProvider.html5Mode(true);
 });
 
@@ -26,68 +26,67 @@ StableMarriage.factory('Config', function() {
   return {
     baseUrl: 'http://localhost:3000/',
     sponsorsUrl: '',
-    studentsUrl:  ''
+    studentsUrl: ''
   };
 });
 
-StableMarriage.factory('StableMarriage', function(Config, $http) {
+StableMarriage.factory('StableMarriageService', function(Config, $http) {
   return {
     landing: function() {
       return $http.get(Config.baseUrl);
     },
-    getSponsors: function () {
+    getSponsors: function() {
       return $http.get(Config.sponsorsUrl);
     },
-    getStudents: function () {
+    getStudents: function() {
       return $http.get(Config.studentsUrl);
     }
   };
 });
 
-StableMarriage.controller('AppController', function($scope, $http, $state, StableMarriage){
+StableMarriage.controller('AppController', function($scope, $http, $state, StableMarriageService){
   $scope.students = [{
-      "id": 1,
-      "name": "Svejk",
-      "priority_list": [1, 3, 2]
-    },
-    {
-      "id": 2,
-      "name": "Zotya",
-      "priority_list": [2, 1, 3]
-    },
-    {
-      "id": 3,
-      "name": "Bastya elvtars",
-      "priority_list": [3, 2, 1]
-    }];
+    "id": 1,
+    "name": "Svejk",
+    "priority_list": [1, 3, 2]
+  },
+  {
+    "id": 2,
+    "name": "Zotya",
+    "priority_list": [2, 1, 3]
+  },
+  {
+    "id": 3,
+    "name": "Bastya elvtars",
+    "priority_list": [3, 2, 1]
+  }];
   $scope.sponsors = [{
-      "id": 1,
-      "name": "vidampark",
-      "priority_list": [1, 3, 2],
-      "participants_number": 1
-    },
-    {
-      "id": 2,
-      "name": "allatkert",
-      "priority_list": [2, 3, 1],
-      "participants_number": 1
-    },
-    {
-      "id": 3,
-      "name": "cirkusz",
-      "priority_list": [1, 2, 3],
-      "participants_number": 1
-    }];
+    "id": 1,
+    "name": "vidampark",
+    "priority_list": [1, 3, 2],
+    "participants_number": 1
+  },
+  {
+    "id": 2,
+    "name": "allatkert",
+    "priority_list": [2, 3, 1],
+    "participants_number": 1
+  },
+  {
+    "id": 3,
+    "name": "cirkusz",
+    "priority_list": [1, 2, 3],
+    "participants_number": 1
+  }];
 
-  StableMarriage.getSponsors().success(function (data){
-    $scope.sponsors = data;
-  })
-
-  StableMarriage.getStudents().success(function (data) {
-    $scope.students = data;
-  })
+  // StableMarriageService.getSponsors().success(function (data){
+  //   $scope.sponsors = data;
+  // })
+  //
+  // StableMarriageService.getStudents().success(function (data) {
+  //   $scope.students = data;
+  // })
 
   $scope.showLists = false;
   $scope.showDetails = false;
-
 });

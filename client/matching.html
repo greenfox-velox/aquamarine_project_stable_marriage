@@ -1,5 +1,5 @@
 <h1>Matching</h1>
-<button type="button" name="button" class="btn btn-primary btn-lg" ng-click="showLists = !showLists">Show</button>
+<button type="button" name="button" class="btn btn-primary btn-lg" ng-click="showLists = !showLists">Matching</button>
 <div class="sponsor_list" ng-show="showLists">
   <table class="table table-condensed table-hover">
     <thead class="thead-inverse">
@@ -11,14 +11,13 @@
       <tr ng-repeat="sponsor in sponsors | orderBy: order" >
         <td class="name"> {{sponsor.name}}
           <div class="priority_list" ng-show="showDetails">
-            <p>Priority list:</p>{{sponsor.priority_list}}
+            <p>Priority list: {{sponsor.priority_list}}</p>
           </div>
           <div class="participants_number" ng-show="showDetails">
-            <p>Participants number:</p>
-            {{sponsor.participants_number}}
+            <p>Participants number: {{sponsor.participants_number}}</p>
           </div>
         </td>
-        <td class="accordin"><a href="#" ng-click="showDetails = !showDetails">Show more</a></td>
+        <td class="accordion"><a href="#" ng-click="showDetails = !showDetails">Show more</a></td>
       </tr>
     </tbody>
   </table>
@@ -34,10 +33,10 @@
       <tr ng-repeat="student in students | orderBy: order" >
         <td class="name"> {{student.name}}
           <div class="priority_list" ng-show="showDetails">
-            <p>Priority list:</p>{{student.priority_list}}
+            <p>Priority list: {{student.priority_list}}</p>
           </div>
         </td>
-        <td class="accordin"><a href="#" ng-click="showDetails = !showDetails">Show more</a></td>
+        <td class="accordion"><a href="#" ng-click="showDetails = !showDetails">Show more</a></td>
       </tr>
     </tbody>
   </table>
