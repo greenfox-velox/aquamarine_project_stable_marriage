@@ -25,6 +25,7 @@
     "angular-route": "^1.5.8",
     "angular-ui-router": "^0.3.1",
     "babel-eslint": "^6.1.2",
+    "bootstrap-sass": "^3.3.7",
     "browser-sync": "^2.14.0",
     "browserify": "^13.1.0",
     "eslint": "^2.13.1",
@@ -45,6 +46,7 @@
     "karma-chrome-launcher": "^1.0.1",
     "karma-jasmine": "^1.0.2",
     "nodemon": "^1.9.2",
+    "sass": "^0.5.0",
     "supertest": "^2.0.0",
     "tap-colorize": "^1.2.0",
     "tape": "^4.6.0",
@@ -54,10 +56,8 @@
     "angular": "^1.5.8",
     "angular-animate": "^1.5.8",
     "body-parser": "^1.15.2",
-    "bootstrap-sass": "^3.3.7",
     "dotenv": "^2.0.0",
     "express": "^4.14.0",
-    "mysql": "^2.11.1",
-    "sass": "^0.5.0"
+    "mysql": "^2.11.1"
   }
 }
